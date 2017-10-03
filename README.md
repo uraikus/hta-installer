@@ -3,6 +3,7 @@
   When the user attempts to run the installer, it will attempt to install to a user input local location, as well as a user input network drive location. <br>
 To create compile a installer file, open up the Resources/files.json file:
   <ul>
+    <li>"iType": this setting can be either "local", "network", or "both". This will determine will the program can be installed to when ran by the user.</li>
     <li>"fName": is the installers name.</li>
     <li>"folders": stores all the directory names you would like the installer to make. <b>Note:</b> Create parent directories prior to the child directories. All directories will be installed relative to the locations input by the user running the installer.</li>
     <li>"from": acts as a file manifest, it records each of the files you would like compiled.</li>
