@@ -62,8 +62,8 @@ catch(err) {
   close();
 }
 function startInstall() {
-  if (netPath === undefined) updateNetPath();
-  if (locPath === undefined) locPath = document.getElementById("locPath").value;
+  updateNetPath();
+  locPath = document.getElementById("locPath").value;
   log("Starting Installation...");
   if (!update) {
     try{createFolders();}
@@ -79,23 +79,27 @@ function updateNetPath() {
  netPath = text.replace(/\/\//, "\\\\").replace(/\/\//g, "/");
 }
 function createFolders() {
- var folder = JSON.parse(document.getElementById("foldersList").innerText);
+ var folders = JSON.parse(document.getElementById("foldersList").innerText);
  for (var x = 0; x < folders.length; x++) {
-  try{fso.createFolder(locPath + folders[x]);}
-  catch(err){log("Couldn't create folder: " + locPath + folders[x]);}
-  try{fso.createFolder(netPath + folders[x]);}
-  catch(err){log("Couldn't create folder: " + netPath + folders[x]);}
+  if (netPath !== "false"){
+   try{fso.createFolder(locPath + folders[x]);}
+   catch(err){log("Couldn't create folder: " + locPath + folders[x]);}
+  }
+  if (locPath !== "false"){
+   try{fso.createFolder(netPath + folders[x]);}
+   catch(err){log("Couldn't create folder: " + netPath + folders[x]);}
+  }
  }
 }
 function createFiles() {
   var files = document.getElementsByClassName("file");
   for (var x = 0; x < files.length; x++) {
    if (netPath !== "false") {
-    try{saveFile(netPath + "CP Console/" + files[x].dataset.to, files[x].innerText);}
+    try{saveFile(netPath + files[x].dataset.to, files[x].innerText);}
     catch(err){log("Could not create file on network: " + files[x].dataset.to);}
    }
    if (locPath !== "false") {
-    try{saveFile(locPath + "CP Console/" + files[x].dataset.to, files[x].innerText);}
+    try{saveFile(locPath + files[x].dataset.to, files[x].innerText);}
     catch(err){log("Could not create file on local system: " + files[x].dataset.to);}
    }
   }
@@ -117,8 +121,8 @@ function log(text) {
   <span id='fName'></span>
   <span id='foldersList'></span>
  </span>
- <div><span class='detail'>Network Install Location:</span> <input id='netPath' size=50 oninput='updateNetPath()' value='//Network Location/Desired Folder'><sup><b>Note:</b> A new folder will be created in your selected directory called "CP Console."</sup></div>
- <div><span class='detail'>Local Install Location:</span> <input id='locPath' size=50 oninput='locPath = this.value;' value='c:/'><sup><b>Note:</b> It is recommended not to changes this value.</sup></div>
+ <div><span class='detail'>Network Install Location:</span> <input id='netPath' size=50 value='//Network Location/Desired Folder'><sup><b>Note:</b> A new folder will be created in your selected directory called "CP Console."</sup></div>
+ <div><span class='detail'>Local Install Location:</span> <input id='locPath' size=50 value='c:/'><sup><b>Note:</b> It is recommended not to changes this value.</sup></div>
 <input type='button' value='Install to above location(s).' onclick='startInstall()'>
 <div id='log'><b>Installation Log:</b></div>
 </body>
