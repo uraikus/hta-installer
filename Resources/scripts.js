@@ -10,18 +10,18 @@ window.onload = function() {
   for (var x = 0; x < files.to.length; x++) {
     preserveFileData(files.from[x], files.to[x]);
   }
-  installer.getElementById("fName").innerText = fName;
-  installer.getElementById("foldersList").innerText = JSON.stringify(folder);
-  if (iType === "local") {
+  installer.getElementById("fName").innerText = files.fName;
+  installer.getElementById("foldersList").innerText = JSON.stringify(files.folder);
+  if (files.iType === "local") {
     installer.getElementById("netPath").innerText = "false";
     installer.getElementById("netPath").parentElement.style.display = "none";
   }
-  else if (iType === "network") {
+  else if (files.iType === "network") {
     installer.getElementById("locPath").innerText = "false";
     installer.getElementById("locPath").parentElement.style.display = "none";
   }
   var fileData = "<DOCTYPE html>" + installer.documentElement.outerHTML;
-  saveFile(fName + ".hta", fileData);
+  saveFile(files.fName + ".hta", fileData);
   log("Completed!");
 }
 function saveFile(path, data) {
