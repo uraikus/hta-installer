@@ -12,6 +12,14 @@ window.onload = function() {
   }
   installer.getElementById("fName").innerText = fName;
   installer.getElementById("foldersList").innerText = JSON.stringify(folder);
+  if (iType === "local") {
+    installer.getElementById("netPath").innerText = "false";
+    installer.getElementById("netPath").parentElement.style.display = "none";
+  }
+  else if (iType === "network") {
+    installer.getElementById("locPath").innerText = "false";
+    installer.getElementById("locPath").parentElement.style.display = "none";
+  }
   var fileData = "<DOCTYPE html>" + installer.documentElement.outerHTML;
   saveFile(fName + ".hta", fileData);
   log("Completed!");
