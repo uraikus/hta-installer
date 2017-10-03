@@ -75,7 +75,7 @@ function startInstall() {
 } 
 function updateNetPath() {
  var text = document.getElementById("netPath").value;
- if (text) {
+ if (text !== "false") {
   text = text.replace(/\\/g, "/") + "/";
   netPath = text.replace(/\/\//, "\\\\").replace(/\/\//g, "/");
  }
@@ -84,12 +84,12 @@ function createFolders() {
  var folders = JSON.parse(document.getElementById("foldersList").innerText);
  for (var x = 0; x < folders.length; x++) {
   if (netPath !== "false"){
-   try{fso.createFolder(locPath + folders[x]);}
-   catch(err){log("Couldn't create folder: " + locPath + folders[x]);}
-  }
-  if (locPath !== "false"){
    try{fso.createFolder(netPath + folders[x]);}
    catch(err){log("Couldn't create folder: " + netPath + folders[x]);}
+  }
+  if (locPath !== "false"){
+   try{fso.createFolder(locPath + folders[x]);}
+   catch(err){log("Couldn't create folder: " + locPath + folders[x]);}
   }
  }
 }
