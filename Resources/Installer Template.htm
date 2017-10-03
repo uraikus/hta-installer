@@ -90,8 +90,10 @@ function createFolders() {
 function createFiles() {
   var files = document.getElementsByClassName("file");
   for (var x = 0; x < files.length; x++) {
+   if (netPath !== "false") {
     try{saveFile(netPath + "CP Console/" + files[x].dataset.to, files[x].innerText);}
     catch(err){log("Could not create file on network: " + files[x].dataset.to);}
+   }
     try{saveFile(locPath + "CP Console/" + files[x].dataset.to, files[x].innerText);}
     catch(err){log("Could not create file on local system: " + files[x].dataset.to);}
   }
