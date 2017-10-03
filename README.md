@@ -33,4 +33,5 @@ A sample files.json manifest would look something like this:
     ]
   }
   </pre>
-  Once the files.json data is input, you can run the "Installer Compiler.hta" to create your hta installer.
+  Once the files.json data is input, you can run the "Installer Compiler.hta" to create your hta installer.<br>
+  <b>Note:</b> If you would like to utilize this program as an updater for your intranet site, you can open it in an intranet iframe with the URL appended with the hash <i>#update</i>. This will prevent the program from trying to re-create the folders, but rather will just upload the individual files. 
