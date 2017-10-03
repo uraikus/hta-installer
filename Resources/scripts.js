@@ -6,7 +6,7 @@ var files;
 window.onload = function() {
   log("Initializing...");
   installer = document.getElementById("installer").contentDocument;
-  files = JSON.parse(readFile("Installer/files.json"));
+  files = JSON.parse(readFile("Resources/files.json"));
   for (var x = 0; x < files.to.length; x++) {
     preserveFileData(files.from[x], files.to[x]);
   }
