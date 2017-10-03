@@ -74,10 +74,10 @@ function startInstall() {
   finally{log("Installation Completed!");}
 } 
 function updateNetPath() {
- var text = document.getElementById("netPath").value;
- if (text !== "false") {
-  text = text.replace(/\\/g, "/") + "/";
-  netPath = text.replace(/\/\//, "\\\\").replace(/\/\//g, "/");
+ netPath = document.getElementById("netPath").value;
+ if (netPath !== "false") {
+  netPath = netPath.replace(/\\/g, "/") + "/";
+  netPath = netPath.replace(/\/\//, "\\\\").replace(/\/\//g, "/");
  }
 }
 function createFolders() {
