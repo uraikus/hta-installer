@@ -63,7 +63,7 @@ catch(err) {
 }
 function startInstall() {
   if (netPath === undefined) updateNetPath();
-  if (locPath === undefined) locPath = document.getElementsByTagName("INPUT")[1].value;
+  if (locPath === undefined) locPath = document.getElementById("locPath").value;
   log("Starting Installation...");
   if (!update) {
     try{createFolders();}
@@ -94,8 +94,10 @@ function createFiles() {
     try{saveFile(netPath + "CP Console/" + files[x].dataset.to, files[x].innerText);}
     catch(err){log("Could not create file on network: " + files[x].dataset.to);}
    }
+   if (locPath !== "false") {
     try{saveFile(locPath + "CP Console/" + files[x].dataset.to, files[x].innerText);}
     catch(err){log("Could not create file on local system: " + files[x].dataset.to);}
+   }
   }
 }
 function saveFile(path, data) {
@@ -115,9 +117,9 @@ function log(text) {
   <span id='fName'></span>
   <span id='foldersList'></span>
  </span>
- <span class='detail'>Network Install Location:</span> <input id='netPath' size=50 oninput='updateNetPath()' value='//Network Location/Desired Folder'><sup><b>Note:</b> A new folder will be created in your selected directory called "CP Console."</sup><br>
- <span class='detail'>Local Install Location:</span> <input size=50 oninput='locPath = this.value;' value='c:/'><sup><b>Note:</b> It is recommended not to changes this value.</sup><br>
-<input type='button' value='Install to above locations.' onclick='startInstall()'>
+ <div><span class='detail'>Network Install Location:</span> <input id='netPath' size=50 oninput='updateNetPath()' value='//Network Location/Desired Folder'><sup><b>Note:</b> A new folder will be created in your selected directory called "CP Console."</sup></div>
+ <div><span class='detail'>Local Install Location:</span> <input id='locPath' size=50 oninput='locPath = this.value;' value='c:/'><sup><b>Note:</b> It is recommended not to changes this value.</sup></div>
+<input type='button' value='Install to above location(s).' onclick='startInstall()'>
 <div id='log'><b>Installation Log:</b></div>
 </body>
 </html>
