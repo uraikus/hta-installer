@@ -11,13 +11,13 @@ window.onload = function() {
     preserveFileData(files.from[x], files.to[x]);
   }
   installer.getElementById("fName").innerText = files.fName;
-  installer.getElementById("foldersList").innerText = JSON.stringify(files.folder);
+  installer.getElementById("foldersList").innerText = JSON.stringify(files.folders);
   if (files.iType === "local") {
-    installer.getElementById("netPath").innerText = "false";
+    installer.getElementById("netPath").setAttribute("value","false");
     installer.getElementById("netPath").parentElement.style.display = "none";
   }
   else if (files.iType === "network") {
-    installer.getElementById("locPath").innerText = "false";
+    installer.getElementById("locPath").setAttribute("value","false");
     installer.getElementById("locPath").parentElement.style.display = "none";
   }
   var fileData = "<DOCTYPE html>" + installer.documentElement.outerHTML;
