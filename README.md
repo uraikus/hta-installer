@@ -15,7 +15,7 @@ A sample files.json manifest would look something like this:
 <pre>
   {
     "fName":"Console Installer",
-    "iType": "both",
+    "iType":"both",
     "folders":[
       "CP Console",
       "CP Console/Resources",
